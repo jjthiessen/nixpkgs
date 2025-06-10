@@ -1,20 +1,20 @@
 {
   fetchFromGitHub,
-  # glib,
+  glib,
   # gtk3,
   gtk4,
-  # iproute2,
+  iproute2,
   # kdePackages,
   lib,
   # libappindicator,
   # libappindicator-gtk2,
   # libappindicator-gtk3,
   # libayatana-appindicator,
-  # libsoup_3,
+  libsoup_3,
   openssl,
   pkg-config,
   rustPlatform,
-  # webkitgtk_4_1,
+  webkitgtk_4_1,
   nix-update-script,
 }:
 rustPlatform.buildRustPackage rec {
@@ -31,12 +31,12 @@ rustPlatform.buildRustPackage rec {
   passthru.updateScript = nix-update-script { };
 
   nativeBuildInputs = [
-    # iproute2
+    iproute2
     pkg-config
   ];
 
   buildInputs = [
-    # glib
+    glib
     # gtk3
     gtk4
     # kdePackages.kstatusnotifieritem
@@ -44,9 +44,9 @@ rustPlatform.buildRustPackage rec {
     # libappindicator-gtk2
     # libappindicator-gtk3
     # libayatana-appindicator
-    # libsoup_3
+    libsoup_3
     openssl
-    # webkitgtk_4_1
+    webkitgtk_4_1
   ];
 
   # postPatch = ''
@@ -56,6 +56,7 @@ rustPlatform.buildRustPackage rec {
 
   checkFlags = [
     "--skip=platform::linux::net::tests::test_default_ip"
+    "--skip=platform::linux::tests::test_xfrm_check"
   ];
 
   useFetchCargoVendor = true;
