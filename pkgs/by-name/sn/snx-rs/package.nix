@@ -1,7 +1,6 @@
 {
   fetchFromGitHub,
   glib,
-  # gtk3,
   gtk4,
   iproute2,
   # kdePackages,
@@ -37,7 +36,6 @@ rustPlatform.buildRustPackage rec {
 
   buildInputs = [
     glib
-    # gtk3
     gtk4
     # kdePackages.kstatusnotifieritem
     # libappindicator
@@ -56,7 +54,6 @@ rustPlatform.buildRustPackage rec {
 
   checkFlags = [
     "--skip=platform::linux::net::tests::test_default_ip"
-    "--skip=platform::linux::tests::test_xfrm_check"
   ];
 
   useFetchCargoVendor = true;
